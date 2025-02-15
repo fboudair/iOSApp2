@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct Assignment4AppApp: App {
+    @StateObject var userManager = UserManager()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+           if userManager.currentUser == nil {
+               SplashScreenView()
+                   .environmentObject(userManager)
+            } else {
+               ScavengerHuntView()
+                    
+           }
         }
     }
 }
